@@ -1,1 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROM NIGHT | Organización de Promociones</title>
 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #8b5cf6;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 15px;
+        }
+
+        .hero {
+            min-height: 520px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 70px 7%;
+            background: linear-gradient(135deg, #111827, #312e81);
+            color: white;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 58px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #a78bfa;
+        }
+
+        .hero p {
+            font-size: 19px;
+            line-height: 1.7;
+            color: #e5e7eb;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #8b5cf6;
+            color: white;
+            padding: 14px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #7c3aed;
+        }
+
+        .hero-card {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 30px;
+            border-radius: 20px;
+            width: 330px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-card h2 {
+            margin-bottom: 20px;
+        }
+
+        .hero-card p {
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .section {
+            padding: 70px 7%;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 40px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+        }
+
+        .icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        .problem {
+            background: white;
+            padding: 60px 7%;
+        }
+
+        .problem-box {
+            max-width: 900px;
+            margin: auto;
+            background: #f5f3ff;
+            border-left: 5px solid #8b5cf6;
+            padding: 30px;
+            border-radius: 10px;
+            line-height: 1.7;
+        }
+
+        footer {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">PROM <span>NIGHT</span></div>
+
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#funciones">Funciones</a>
+        <a href="#problema">Problema</a>
+    </nav>
+</header>
+
+<section class="hero" id="inicio">
+
+    <div class="hero-text">
+        <h1>Organiza tu <span>Prom Night</span></h1>
+
+        <p>
+            Una plataforma sencilla y gratuita para organizar
+            la fiesta de promoción de manera ordenada,
+            evitando confusiones y manteniendo toda la
+            información en un solo lugar.
+        </p>
+
+        <a href="#funciones" class="btn">
+            Comenzar organización
+        </a>
+    </div>
+
+    <div class="hero-card">
+        <h2>📊 Organización</h2>
+
+        <p>✅ Tareas y responsables</p>
+        <p>📅 Fechas y actividades</p>
+        <p>💰 Presupuesto y pagos</p>
+        <p>🏢 Proveedores</p>
+        <p>📝 Acuerdos</p>
+        <p>🔔 Recordatorios</p>
+    </div>
+
+</section>
+
+<section class="section" id="funciones">
+
+    <h2>Todo en un solo lugar</h2>
+
+    <p class="section-subtitle">
+        Herramientas para facilitar la organización de tu fiesta de promoción.
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">✅</div>
+            <h3>Tareas</h3>
+            <p>
+                Registra las actividades y asigna
+                responsables para evitar tareas olvidadas.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">💰</div>
+            <h3>Presupuesto</h3>
+            <p>
+                Controla el dinero recaudado,
+                gastos y pagos pendientes.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🏢</div>
+            <h3>Proveedores</h3>
+            <p>
+                Guarda información de los proveedores,
+                servicios, fechas y pagos.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">📝</div>
+            <h3>Acuerdos</h3>
+            <p>
+                Registra las decisiones importantes
+                para que no se pierdan entre mensajes.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="problem" id="problema">
+
+    <h2>¿Qué problema solucionamos?</h2>
+
+    <div class="problem-box">
+
+        <p>
+            La organización de una fiesta de promoción puede
+            presentar dificultades debido a la falta de planificación,
+            la comunicación desordenada y la información dispersa.
+            Los mensajes pueden acumularse y hacer que se pierdan
+            acuerdos importantes, mientras que las tareas, pagos,
+            proveedores y fechas pueden quedar sin un control claro.
+        </p>
+
+        <br>
+
+        <p>
+            <strong>PROM NIGHT</strong> propone reunir toda esta
+            información en una sola plataforma para facilitar la
+            organización, mejorar la comunicación y permitir un
+            mejor seguimiento de las actividades.
+        </p>
+
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 PROM NIGHT | Proyecto de EPT</p>
+    <p>Una herramienta para organizar mejor nuestra promoción.</p>
+</footer>
+
+</body>
+</html>
