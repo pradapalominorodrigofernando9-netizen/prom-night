@@ -1,331 +1,1418 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROM NIGHT | Organización de Promociones</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+<title>PROM NIGHT | Organización de Promociones</title>
 
-        body {
-            background: #f5f7fb;
-            color: #1f2937;
-        }
+<style>
 
-        header {
-            background: #111827;
-            color: white;
-            padding: 18px 7%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
+body{
+    background:#f4f6fb;
+    color:#172033;
+}
 
-        .logo span {
-            color: #8b5cf6;
-        }
+header{
+    background:#111827;
+    color:white;
+    padding:18px 25px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 25px;
-            font-size: 15px;
-        }
+.header-content{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
 
-        .hero {
-            min-height: 520px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 70px 7%;
-            background: linear-gradient(135deg, #111827, #312e81);
-            color: white;
-        }
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
 
-        .hero-text {
-            max-width: 600px;
-        }
+.logo span{
+    color:#60a5fa;
+}
 
-        .hero h1 {
-            font-size: 58px;
-            margin-bottom: 20px;
-        }
+nav{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
 
-        .hero h1 span {
-            color: #a78bfa;
-        }
+nav button{
+    background:transparent;
+    border:none;
+    color:white;
+    padding:9px 12px;
+    border-radius:8px;
+    cursor:pointer;
+}
 
-        .hero p {
-            font-size: 19px;
-            line-height: 1.7;
-            color: #e5e7eb;
-            margin-bottom: 30px;
-        }
+nav button:hover{
+    background:#374151;
+}
 
-        .btn {
-            display: inline-block;
-            background: #8b5cf6;
-            color: white;
-            padding: 14px 25px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-        }
+main{
+    max-width:1200px;
+    margin:auto;
+    padding:25px;
+}
 
-        .btn:hover {
-            background: #7c3aed;
-        }
+.page{
+    display:none;
+}
 
-        .hero-card {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 30px;
-            border-radius: 20px;
-            width: 330px;
-            backdrop-filter: blur(10px);
-        }
+.page.active{
+    display:block;
+}
 
-        .hero-card h2 {
-            margin-bottom: 20px;
-        }
+.hero{
+    background:linear-gradient(135deg,#111827,#1e3a8a);
+    color:white;
+    padding:50px 30px;
+    border-radius:20px;
+    margin-bottom:25px;
+}
 
-        .hero-card p {
-            font-size: 15px;
-            margin-bottom: 12px;
-        }
+.hero h1{
+    font-size:42px;
+    margin-bottom:12px;
+}
 
-        .section {
-            padding: 70px 7%;
-        }
+.hero p{
+    font-size:18px;
+    max-width:700px;
+    line-height:1.6;
+}
 
-        .section h2 {
-            text-align: center;
-            font-size: 32px;
-            margin-bottom: 15px;
-        }
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+}
 
-        .section-subtitle {
-            text-align: center;
-            color: #6b7280;
-            margin-bottom: 40px;
-        }
+.card{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 5px 18px rgba(0,0,0,.07);
+    margin-bottom:20px;
+}
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
+.card h3{
+    margin-bottom:10px;
+}
 
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 16px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
-        }
+.stat{
+    font-size:32px;
+    font-weight:bold;
+    color:#2563eb;
+}
 
-        .icon {
-            font-size: 32px;
-            margin-bottom: 15px;
-        }
+button.primary{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:11px 17px;
+    border-radius:9px;
+    cursor:pointer;
+    margin-top:10px;
+}
 
-        .card h3 {
-            margin-bottom: 10px;
-        }
+button.primary:hover{
+    background:#1d4ed8;
+}
 
-        .card p {
-            color: #6b7280;
-            line-height: 1.5;
-        }
+button.danger{
+    background:#dc2626;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    border-radius:7px;
+    cursor:pointer;
+}
 
-        .problem {
-            background: white;
-            padding: 60px 7%;
-        }
+button.small{
+    padding:7px 10px;
+    border:none;
+    border-radius:7px;
+    cursor:pointer;
+    margin:2px;
+}
 
-        .problem-box {
-            max-width: 900px;
-            margin: auto;
-            background: #f5f3ff;
-            border-left: 5px solid #8b5cf6;
-            padding: 30px;
-            border-radius: 10px;
-            line-height: 1.7;
-        }
+input,select,textarea{
+    width:100%;
+    padding:11px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    margin-top:6px;
+    margin-bottom:12px;
+}
 
-        footer {
-            background: #111827;
-            color: white;
-            text-align: center;
-            padding: 30px;
-        }
+label{
+    font-weight:bold;
+    font-size:14px;
+}
 
-        @media (max-width: 900px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                gap: 40px;
-            }
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
 
-            .cards {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+th,td{
+    padding:10px;
+    border-bottom:1px solid #e5e7eb;
+    text-align:left;
+    vertical-align:top;
+}
 
-        @media (max-width: 600px) {
-            nav {
-                display: none;
-            }
+th{
+    background:#f3f4f6;
+}
 
-            .hero h1 {
-                font-size: 42px;
-            }
+.progress-container{
+    background:#e5e7eb;
+    border-radius:20px;
+    overflow:hidden;
+    height:25px;
+}
 
-            .cards {
-                grid-template-columns: 1fr;
-            }
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:#2563eb;
+    color:white;
+    text-align:center;
+    line-height:25px;
+    transition:.3s;
+}
 
-            .hero-card {
-                width: 100%;
-            }
-        }
-    </style>
+.provider{
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:12px;
+}
+
+.provider h3{
+    margin-bottom:6px;
+}
+
+.provider a{
+    display:inline-block;
+    margin-top:8px;
+    color:#2563eb;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.notice{
+    padding:12px;
+    background:#eff6ff;
+    border-left:5px solid #2563eb;
+    border-radius:8px;
+    margin-bottom:15px;
+}
+
+.calendar{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:5px;
+    margin-top:15px;
+}
+
+.calendar div{
+    background:white;
+    border:1px solid #e5e7eb;
+    min-height:55px;
+    padding:7px;
+    border-radius:7px;
+}
+
+.calendar .day-name{
+    background:#111827;
+    color:white;
+    text-align:center;
+    min-height:auto;
+}
+
+.calendar .today{
+    border:3px solid #2563eb;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#6b7280;
+}
+
+@media(max-width:700px){
+
+    .header-content{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    nav{
+        width:100%;
+    }
+
+    nav button{
+        font-size:12px;
+    }
+
+    .hero h1{
+        font-size:30px;
+    }
+
+    main{
+        padding:15px;
+    }
+
+    table{
+        font-size:13px;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
 
 <header>
-    <div class="logo">PROM <span>NIGHT</span></div>
 
-    <nav>
-        <a href="#inicio">Inicio</a>
-        <a href="#funciones">Funciones</a>
-        <a href="#problema">Problema</a>
-    </nav>
+<div class="header-content">
+
+<div class="logo">
+PROM <span>NIGHT</span>
+</div>
+
+<nav>
+
+<button onclick="mostrarPagina('inicio')">Inicio</button>
+<button onclick="mostrarPagina('tareas')">Tareas</button>
+<button onclick="mostrarPagina('calendario')">Calendario</button>
+<button onclick="mostrarPagina('presupuesto')">Presupuesto</button>
+<button onclick="mostrarPagina('proveedores')">Proveedores</button>
+<button onclick="mostrarPagina('acuerdos')">Acuerdos</button>
+<button onclick="mostrarPagina('progreso')">Progreso</button>
+
+</nav>
+
+</div>
+
 </header>
 
-<section class="hero" id="inicio">
+<main>
 
-    <div class="hero-text">
-        <h1>Organiza tu <span>Prom Night</span></h1>
+<!-- INICIO -->
 
-        <p>
-            Una plataforma sencilla y gratuita para organizar
-            la fiesta de promoción de manera ordenada,
-            evitando confusiones y manteniendo toda la
-            información en un solo lugar.
-        </p>
+<section id="inicio" class="page active">
 
-        <a href="#funciones" class="btn">
-            Comenzar organización
-        </a>
-    </div>
+<div class="hero">
 
-    <div class="hero-card">
-        <h2>📊 Organización</h2>
+<h1>Organiza tu Prom Night</h1>
 
-        <p>✅ Tareas y responsables</p>
-        <p>📅 Fechas y actividades</p>
-        <p>💰 Presupuesto y pagos</p>
-        <p>🏢 Proveedores</p>
-        <p>📝 Acuerdos</p>
-        <p>🔔 Recordatorios</p>
-    </div>
+<p>
+PROM NIGHT es una plataforma para organizar una fiesta de promoción
+de manera ordenada, sencilla y colaborativa.
+</p>
+
+<button class="primary" onclick="mostrarPagina('tareas')">
+Comenzar organización
+</button>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>📋 Tareas</h3>
+<p>Registra actividades, responsables, fechas y estados.</p>
+</div>
+
+<div class="card">
+<h3>📅 Calendario</h3>
+<p>Visualiza las fechas importantes de la organización.</p>
+</div>
+
+<div class="card">
+<h3>💰 Presupuesto</h3>
+<p>Controla ingresos, gastos y pagos pendientes.</p>
+</div>
+
+<div class="card">
+<h3>🤝 Acuerdos</h3>
+<p>Registra las decisiones tomadas por el grupo.</p>
+</div>
+
+<div class="card">
+<h3>🏢 Proveedores</h3>
+<p>Consulta proveedores y accede a sus ubicaciones.</p>
+</div>
+
+<div class="card">
+<h3>🔔 Notificaciones</h3>
+<p>Recibe avisos sobre tareas próximas.</p>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Resumen de organización</h2>
+
+<div class="grid">
+
+<div>
+<p>Tareas</p>
+<div class="stat" id="inicioTareas">0</div>
+</div>
+
+<div>
+<p>Completadas</p>
+<div class="stat" id="inicioCompletadas">0</div>
+</div>
+
+<div>
+<p>Acuerdos</p>
+<div class="stat" id="inicioAcuerdos">0</div>
+</div>
+
+<div>
+<p>Gastos</p>
+<div class="stat" id="inicioGastos">S/ 0.00</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TAREAS -->
+
+<section id="tareas" class="page">
+
+<div class="card">
+
+<h2>📋 Gestión de tareas</h2>
+
+<form id="formTarea">
+
+<label>Tarea</label>
+<input id="tareaNombre" required placeholder="Ejemplo: Reservar local">
+
+<label>Responsable</label>
+<input id="tareaResponsable" required placeholder="Nombre del responsable">
+
+<label>Fecha límite</label>
+<input type="date" id="tareaFecha" required>
+
+<label>Estado</label>
+
+<select id="tareaEstado">
+
+<option value="Pendiente">Pendiente</option>
+<option value="En proceso">En proceso</option>
+<option value="Completada">Completada</option>
+
+</select>
+
+<button class="primary" type="submit">
+Agregar tarea
+</button>
+
+</form>
+
+</div>
+
+<div class="card">
+
+<h2>Mis tareas</h2>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Tarea</th>
+<th>Responsable</th>
+<th>Fecha</th>
+<th>Estado</th>
+<th>Acciones</th>
+</tr>
+
+</thead>
+
+<tbody id="listaTareas"></tbody>
+
+</table>
+
+</div>
 
 </section>
 
-<section class="section" id="funciones">
 
-    <h2>Todo en un solo lugar</h2>
+<!-- CALENDARIO -->
 
-    <p class="section-subtitle">
-        Herramientas para facilitar la organización de tu fiesta de promoción.
-    </p>
+<section id="calendario" class="page">
 
-    <div class="cards">
+<div class="card">
 
-        <div class="card">
-            <div class="icon">✅</div>
-            <h3>Tareas</h3>
-            <p>
-                Registra las actividades y asigna
-                responsables para evitar tareas olvidadas.
-            </p>
-        </div>
+<h2>📅 Calendario</h2>
 
-        <div class="card">
-            <div class="icon">💰</div>
-            <h3>Presupuesto</h3>
-            <p>
-                Controla el dinero recaudado,
-                gastos y pagos pendientes.
-            </p>
-        </div>
+<p>
+Hoy es: <strong id="fechaActual"></strong>
+</p>
 
-        <div class="card">
-            <div class="icon">🏢</div>
-            <h3>Proveedores</h3>
-            <p>
-                Guarda información de los proveedores,
-                servicios, fechas y pagos.
-            </p>
-        </div>
+<div class="calendar" id="calendarioMes"></div>
 
-        <div class="card">
-            <div class="icon">📝</div>
-            <h3>Acuerdos</h3>
-            <p>
-                Registra las decisiones importantes
-                para que no se pierdan entre mensajes.
-            </p>
-        </div>
+</div>
 
-    </div>
+<div class="card">
+
+<h2>Fechas de las tareas</h2>
+
+<div id="fechasTareas"></div>
+
+</div>
 
 </section>
 
-<section class="problem" id="problema">
 
-    <h2>¿Qué problema solucionamos?</h2>
+<!-- PRESUPUESTO -->
 
-    <div class="problem-box">
+<section id="presupuesto" class="page">
 
-        <p>
-            La organización de una fiesta de promoción puede
-            presentar dificultades debido a la falta de planificación,
-            la comunicación desordenada y la información dispersa.
-            Los mensajes pueden acumularse y hacer que se pierdan
-            acuerdos importantes, mientras que las tareas, pagos,
-            proveedores y fechas pueden quedar sin un control claro.
-        </p>
+<div class="card">
 
-        <br>
+<h2>💰 Presupuesto</h2>
 
-        <p>
-            <strong>PROM NIGHT</strong> propone reunir toda esta
-            información en una sola plataforma para facilitar la
-            organización, mejorar la comunicación y permitir un
-            mejor seguimiento de las actividades.
-        </p>
+<form id="formGasto">
 
-    </div>
+<label>Descripción</label>
+<input id="gastoDescripcion" required placeholder="Ejemplo: Reserva del local">
+
+<label>Monto</label>
+<input type="number" id="gastoMonto" min="0" step="0.01" required>
+
+<label>Estado del pago</label>
+
+<select id="gastoEstado">
+
+<option value="Pendiente">Pendiente</option>
+<option value="Pagado">Pagado</option>
+
+</select>
+
+<button class="primary" type="submit">
+Registrar movimiento
+</button>
+
+</form>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>Total registrado</h3>
+<div class="stat" id="totalGastos">S/ 0.00</div>
+</div>
+
+<div class="card">
+<h3>Total pagado</h3>
+<div class="stat" id="totalPagado">S/ 0.00</div>
+</div>
+
+<div class="card">
+<h3>Total pendiente</h3>
+<div class="stat" id="totalPendiente">S/ 0.00</div>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Movimientos</h2>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Descripción</th>
+<th>Monto</th>
+<th>Estado</th>
+<th>Acción</th>
+</tr>
+
+</thead>
+
+<tbody id="listaGastos"></tbody>
+
+</table>
+
+</div>
 
 </section>
+
+
+<!-- PROVEEDORES -->
+
+<section id="proveedores" class="page">
+
+<div class="card">
+
+<h2>🏢 Proveedores</h2>
+
+<div class="notice">
+Estos son ejemplos de proveedores reales encontrados en Chincha.
+Puedes abrir su ubicación en Google Maps y luego registrar los que
+realmente interesen para la promoción.
+</div>
+
+<div id="listaProveedores"></div>
+
+</div>
+
+<div class="card">
+
+<h2>➕ Registrar proveedor</h2>
+
+<form id="formProveedor">
+
+<label>Nombre</label>
+<input id="proveedorNombre" required>
+
+<label>Servicio</label>
+<input id="proveedorServicio" required>
+
+<label>Teléfono</label>
+<input id="proveedorTelefono">
+
+<label>Dirección</label>
+<input id="proveedorDireccion">
+
+<label>Enlace de Google Maps</label>
+<input id="proveedorMapa" placeholder="Pega aquí el enlace de Google Maps">
+
+<button class="primary" type="submit">
+Guardar proveedor
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+
+<!-- ACUERDOS -->
+
+<section id="acuerdos" class="page">
+
+<div class="card">
+
+<h2>🤝 Registrar acuerdo</h2>
+
+<form id="formAcuerdo">
+
+<label>Acuerdo</label>
+
+<textarea id="acuerdoTexto"
+placeholder="Ejemplo: Se acuerda contratar el local..."
+required></textarea>
+
+<label>Responsable del acuerdo</label>
+
+<input id="acuerdoResponsable" required>
+
+<label>Fecha</label>
+
+<input type="date" id="acuerdoFecha" required>
+
+<button class="primary" type="submit">
+Guardar acuerdo
+</button>
+
+</form>
+
+</div>
+
+<div class="card">
+
+<h2>Acuerdos registrados</h2>
+
+<div id="listaAcuerdos"></div>
+
+</div>
+
+</section>
+
+
+<!-- PROGRESO -->
+
+<section id="progreso" class="page">
+
+<div class="card">
+
+<h2>📊 Progreso de la organización</h2>
+
+<p id="textoProgreso">0% completado</p>
+
+<div class="progress-container">
+
+<div class="progress-bar" id="barraProgreso">
+0%
+</div>
+
+</div>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>📋 Tareas</h3>
+
+<div class="stat" id="progresoTareas">0%</div>
+
+</div>
+
+<div class="card">
+
+<h3>🤝 Acuerdos</h3>
+
+<div class="stat" id="progresoAcuerdos">0</div>
+
+</div>
+
+<div class="card">
+
+<h3>🏢 Proveedores</h3>
+
+<div class="stat" id="progresoProveedores">0</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
 
 <footer>
-    <p>© 2026 PROM NIGHT | Proyecto de EPT</p>
-    <p>Una herramienta para organizar mejor nuestra promoción.</p>
+
+PROM NIGHT © 2026  
+<br>
+Sistema escolar de organización de promociones
+
 </footer>
 
-</body>
-</html>
+
+<script>
+
+/* =========================
+   DATOS
+========================= */
+
+let tareas =
+JSON.parse(localStorage.getItem("prom_tareas")) || [];
+
+let gastos =
+JSON.parse(localStorage.getItem("prom_gastos")) || [];
+
+let acuerdos =
+JSON.parse(localStorage.getItem("prom_acuerdos")) || [];
+
+let proveedores =
+JSON.parse(localStorage.getItem("prom_proveedores")) || [];
+
+
+/* =========================
+   NAVEGACIÓN
+========================= */
+
+function mostrarPagina(id){
+
+document.querySelectorAll(".page")
+.forEach(p => p.classList.remove("active"));
+
+document.getElementById(id)
+.classList.add("active");
+
+}
+
+
+/* =========================
+   GUARDADO
+========================= */
+
+function guardarTodo(){
+
+localStorage.setItem(
+"prom_tareas",
+JSON.stringify(tareas)
+);
+
+localStorage.setItem(
+"prom_gastos",
+JSON.stringify(gastos)
+);
+
+localStorage.setItem(
+"prom_acuerdos",
+JSON.stringify(acuerdos)
+);
+
+localStorage.setItem(
+"prom_proveedores",
+JSON.stringify(proveedores)
+);
+
+}
+
+
+/* =========================
+   TAREAS
+========================= */
+
+document.getElementById("formTarea")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let tarea={
+
+id:Date.now(),
+
+nombre:document.getElementById("tareaNombre").value,
+
+responsable:document.getElementById("tareaResponsable").value,
+
+fecha:document.getElementById("tareaFecha").value,
+
+estado:document.getElementById("tareaEstado").value
+
+};
+
+tareas.push(tarea);
+
+guardarTodo();
+
+this.reset();
+
+mostrarTareas();
+
+actualizarTodo();
+
+});
+
+
+function mostrarTareas(){
+
+let lista=document.getElementById("listaTareas");
+
+lista.innerHTML="";
+
+tareas.forEach(t=>{
+
+let fila=document.createElement("tr");
+
+fila.innerHTML=`
+
+<td>${t.nombre}</td>
+
+<td>${t.responsable}</td>
+
+<td>${formatearFecha(t.fecha)}</td>
+
+<td>${t.estado}</td>
+
+<td>
+
+<button class="small"
+onclick="cambiarEstado(${t.id})">
+Cambiar estado
+</button>
+
+<button class="danger"
+onclick="eliminarTarea(${t.id})">
+Eliminar
+</button>
+
+</td>
+
+`;
+
+lista.appendChild(fila);
+
+});
+
+}
+
+
+function cambiarEstado(id){
+
+let tarea=tareas.find(t=>t.id===id);
+
+if(!tarea)return;
+
+if(tarea.estado==="Pendiente")
+tarea.estado="En proceso";
+
+else if(tarea.estado==="En proceso")
+tarea.estado="Completada";
+
+else
+tarea.estado="Pendiente";
+
+guardarTodo();
+
+mostrarTareas();
+
+actualizarTodo();
+
+}
+
+
+function eliminarTarea(id){
+
+if(confirm("¿Eliminar esta tarea?")){
+
+tareas=tareas.filter(t=>t.id!==id);
+
+guardarTodo();
+
+mostrarTareas();
+
+actualizarTodo();
+
+}
+
+}
+
+
+/* =========================
+   PRESUPUESTO
+========================= */
+
+document.getElementById("formGasto")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let gasto={
+
+id:Date.now(),
+
+descripcion:
+document.getElementById("gastoDescripcion").value,
+
+monto:
+parseFloat(document.getElementById("gastoMonto").value),
+
+estado:
+document.getElementById("gastoEstado").value
+
+};
+
+gastos.push(gasto);
+
+guardarTodo();
+
+this.reset();
+
+mostrarGastos();
+
+actualizarTodo();
+
+});
+
+
+function mostrarGastos(){
+
+let lista=document.getElementById("listaGastos");
+
+lista.innerHTML="";
+
+let total=0;
+let pagado=0;
+let pendiente=0;
+
+gastos.forEach(g=>{
+
+total+=g.monto;
+
+if(g.estado==="Pagado")
+pagado+=g.monto;
+else
+pendiente+=g.monto;
+
+let fila=document.createElement("tr");
+
+fila.innerHTML=`
+
+<td>${g.descripcion}</td>
+
+<td>S/ ${g.monto.toFixed(2)}</td>
+
+<td>${g.estado}</td>
+
+<td>
+
+<button class="danger"
+onclick="eliminarGasto(${g.id})">
+Eliminar
+</button>
+
+</td>
+
+`;
+
+lista.appendChild(fila);
+
+});
+
+document.getElementById("totalGastos")
+.textContent="S/ "+total.toFixed(2);
+
+document.getElementById("totalPagado")
+.textContent="S/ "+pagado.toFixed(2);
+
+document.getElementById("totalPendiente")
+.textContent="S/ "+pendiente.toFixed(2);
+
+}
+
+
+function eliminarGasto(id){
+
+if(confirm("¿Eliminar movimiento?")){
+
+gastos=gastos.filter(g=>g.id!==id);
+
+guardarTodo();
+
+mostrarGastos();
+
+actualizarTodo();
+
+}
+
+}
+
+
+/* =========================
+   ACUERDOS
+========================= */
+
+document.getElementById("formAcuerdo")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let acuerdo={
+
+id:Date.now(),
+
+texto:
+document.getElementById("acuerdoTexto").value,
+
+responsable:
+document.getElementById("acuerdoResponsable").value,
+
+fecha:
+document.getElementById("acuerdoFecha").value
+
+};
+
+acuerdos.push(acuerdo);
+
+guardarTodo();
+
+this.reset();
+
+mostrarAcuerdos();
+
+actualizarTodo();
+
+});
+
+
+function mostrarAcuerdos(){
+
+let lista=document.getElementById("listaAcuerdos");
+
+lista.innerHTML="";
+
+acuerdos.forEach(a=>{
+
+let div=document.createElement("div");
+
+div.className="provider";
+
+div.innerHTML=`
+
+<h3>🤝 Acuerdo</h3>
+
+<p>${a.texto}</p>
+
+<p>
+<strong>Responsable:</strong>
+${a.responsable}
+</p>
+
+<p>
+<strong>Fecha:</strong>
+${formatearFecha(a.fecha)}
+</p>
+
+<button class="danger"
+onclick="eliminarAcuerdo(${a.id})">
+Eliminar
+</button>
+
+`;
+
+lista.appendChild(div);
+
+});
+
+}
+
+
+function eliminarAcuerdo(id){
+
+if(confirm("¿Eliminar acuerdo?")){
+
+acuerdos=
+acuerdos.filter(a=>a.id!==id);
+
+guardarTodo();
+
+mostrarAcuerdos();
+
+actualizarTodo();
+
+}
+
+}
+
+
+/* =========================
+   PROVEEDORES
+========================= */
+
+const proveedoresBase=[
+
+{
+nombre:"La Gruta de Chincha",
+servicio:"Salón para eventos",
+direccion:"C. Jose Olaya 199, Chincha Alta",
+telefono:"+51903383765",
+mapa:"https://www.google.com/maps/search/?api=1&query=La+Gruta+de+Chincha"
+},
+
+{
+nombre:"Casa Club Huaca Grande",
+servicio:"Salón para eventos",
+direccion:"Av. Huaca Grande 11, Sunampe",
+telefono:"+51933766553",
+mapa:"https://www.google.com/maps/search/?api=1&query=Casa+Club+Huaca+Grande+Chincha"
+},
+
+{
+nombre:"London Audio Fotos y Vídeo",
+servicio:"Fotografía",
+direccion:"Calle Italia 254, Chincha Alta",
+telefono:"+51956323859",
+mapa:"https://www.google.com/maps/search/?api=1&query=London+Audio+Fotos+y+Video+Chincha"
+},
+
+{
+nombre:"Ishume - Productora Audiovisual",
+servicio:"Fotografía y audiovisual",
+direccion:"Av. Luis Massaro 791, Chincha Alta",
+telefono:"+51991157028",
+mapa:"https://www.google.com/maps/search/?api=1&query=Ishume+Productora+Audiovisual+Chincha"
+},
+
+{
+nombre:"Salon de Recepciones MILENIUM",
+servicio:"Recinto para eventos",
+direccion:"C. Grocio Prado 116, Chincha Alta",
+telefono:"+51960983402",
+mapa:"https://www.google.com/maps/search/?api=1&query=Salon+de+Recepciones+Milenium+Chincha"
+}
+
+];
+
+
+function mostrarProveedores(){
+
+let lista=document.getElementById("listaProveedores");
+
+lista.innerHTML="";
+
+let todos=[
+...proveedoresBase,
+...proveedores
+];
+
+todos.forEach((p,index)=>{
+
+let div=document.createElement("div");
+
+div.className="provider";
+
+div.innerHTML=`
+
+<h3>🏢 ${p.nombre}</h3>
+
+<p>
+<strong>Servicio:</strong>
+${p.servicio}
+</p>
+
+<p>
+<strong>Dirección:</strong>
+${p.direccion || "No registrada"}
+</p>
+
+<p>
+<strong>Teléfono:</strong>
+${p.telefono || "No registrado"}
+</p>
+
+<a href="${p.mapa || "#"}"
+target="_blank">
+
+📍 Ver en Google Maps
+
+</a>
+
+<br>
+
+${
+index>=proveedoresBase.length
+?
+`<button class="danger"
+onclick="eliminarProveedor(${p.id})">
+Eliminar proveedor
+</button>`
+:""
+}
+
+`;
+
+lista.appendChild(div);
+
+});
+
+}
+
+
+document.getElementById("formProveedor")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let proveedor={
+
+id:Date.now(),
+
+nombre:
+document.getElementById("proveedorNombre").value,
+
+servicio:
+document.getElementById("proveedorServicio").value,
+
+telefono:
+document.getElementById("proveedorTelefono").value,
+
+direccion:
+document.getElementById("proveedorDireccion").value,
+
+mapa:
+document.getElementById("proveedorMapa").value
+
+};
+
+proveedores.push(proveedor);
+
+guardarTodo();
+
+this.reset();
+
+mostrarProveedores();
+
+actualizarTodo();
+
+});
+
+
+function eliminarProveedor(id){
+
+if(confirm("¿Eliminar proveedor?")){
+
+proveedores=
+proveedores.filter(p=>p.id!==id);
+
+guardarTodo();
+
+mostrarProveedores();
+
+actualizarTodo();
+
+}
+
+}
+
+
+/* =========================
+   CALENDARIO
+========================= */
+
+function crearCalendario(){
+
+let hoy=new Date();
+
+let año=hoy.getFullYear();
+
+let mes=hoy.getMonth();
+
+let primerDia=
+new Date(año,mes,1).getDay();
+
+let diasMes=
+new Date(año,mes+1,0).getDate();
+
+let calendario=
+document.getElementById("calendarioMes");
+
+calendario.innerHTML="";
+
+let nombres=[
+"Dom","Lun","Mar","Mié","Jue","Vie","Sáb"
+];
+
+nombres.forEach(n=>{
+
+let div=document.createElement("div");
+
+div.className="day-name";
+
+div.textContent=n;
+
+calendario.appendChild(div);
+
+});
+
+for(let i=0;i<primerDia;i++){
+
+let vacio=document.createElement("div");
+
+calendario.appendChild(vacio);
+
+}
+
+for(let dia=1;dia<=diasMes;dia++){
+
+let div=document.createElement("div");
+
+div.textContent=dia;
+
+if(
+dia===hoy.getDate()
+){
+
+div.classList.add("today");
+
+}
+
+calendario.appendChild(div);
+
+}
+
+document.getElementById("fechaActual")
+.textContent=
+hoy.toLocaleDateString("es-PE",{
+weekday:"long",
+year:"numeric",
+month:"long",
+day:"numeric"
+});
+
+}
+
+
+function mostrarFechasTareas(){
+
+let contenedor=
+document.getElementById("fechasTareas");
+
+contenedor.innerHTML="";
+
+if(tareas.length===0){
+
+contenedor.innerHTML=
+"<p>No hay tareas con fechas registradas.</p>";
+
+return;
+
+}
+
+tareas
+.slice()
+.sort((a,b)=>a.fecha.localeCompare(b.fecha))
+.forEach(t=>{
+
+let div=document.createElement("div");
+
+div.className="notice";
+
+div.innerHTML=`
+
+<strong>${t.nombre}</strong><br>
+
+Responsable:
+${t.responsable}<br>
+
+Fecha:
+${formatearFecha(t.fecha)}<br>
+
+Estado:
+${t.estado}
+
+`;
+
+contenedor.appendChild(div);
+
+});
+
+}
+
+
+/* =========================
